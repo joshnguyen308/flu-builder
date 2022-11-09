@@ -41,6 +41,8 @@ jobs:
       run: echo "${HOME}/flutter/bin" >> $GITHUB_PATH
     - name: verify PATH 
       run: echo ${PATH}
+    - name: verify GITHUB_PATH
+      run: echo $GITHUB_PATH
     - name: verify flutter
       run: flutter doctor 
   
