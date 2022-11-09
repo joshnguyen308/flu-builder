@@ -13,8 +13,6 @@ jobs:
     #   uses: actions/checkout@v3
     # - name: setup java repo
     #   run: sudo add-apt-repository ppa:webupd8team/java
-    - name: go to home 
-      run: cd $HOME && pwd 
     - name: update java repo 
       run: sudo apt-get update
     - name: install java jre
@@ -27,18 +25,24 @@ jobs:
       run: sudo apt install apt-transport-https ca-certificates wget dirmngr gnupg software-properties-common unzip git wget -y
     - name: get flutter 
       run: wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz
-    - name: get gradle 
-      run: wget https://downloads.gradle-dn.com/distributions/gradle-${GRADLE_VERSION}-bin.zip
-    - name: get commandlinetools
-      run: wget https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip
-    - name: list files
-      run: ls -lha && pwd
+    # - name: get gradle 
+    #   run: wget https://downloads.gradle-dn.com/distributions/gradle-${GRADLE_VERSION}-bin.zip
+    # - name: get commandlinetools
+    #   run: wget https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip
+    # - name: list files
+    #   run: ls -lha && pwd
     - name: unzip files
       run: tar -xf flutter_linux_${FLUTTER_VERSION}-stable.tar.xz
-    - name: unzip files 
-      run: unzip gradle-${GRADLE_VERSION}-bin.zip
-    - name: unzip files
-      run: unzip commandlinetools-linux-8512546_latest.zip
+    - name: location 
+      run: ls -lha && pwd
+    - name: change home dir 
+      run: HOME=$(pwd)
+    - name: check one more time
+      run: echo ${HOME}
+    # - name: unzip files 
+    #   run: unzip gradle-${GRADLE_VERSION}-bin.zip
+    # - name: unzip files
+    #   run: unzip commandlinetools-linux-8512546_latest.zip
     - name: export PATH to runner
       run: echo "${HOME}/flutter/bin" >> $GITHUB_PATH
     - name: check PATH
