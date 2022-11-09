@@ -50,7 +50,7 @@ jobs:
     - name: echo path 
       run: echo $PATH
     - name: list 
-      run: ls -lha /home/runner/flutter
+      run: cd flutter && ls -lha && pwd
     - name: verify flutter
       run: flutter doctor
   
