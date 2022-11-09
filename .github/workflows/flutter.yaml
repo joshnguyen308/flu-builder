@@ -39,6 +39,8 @@ jobs:
       run: unzip commandlinetools-linux-8512546_latest.zip
     - name: set exicutive files 
       run: echo "PATH="$PATH:${HOME}/flutter/bin"" >> $HOME/.bashrc
+    - name: execute home bash 
+      run: source $HOME/.bashrc
     - name: verify PATH 
       run: echo ${PATH}
   
