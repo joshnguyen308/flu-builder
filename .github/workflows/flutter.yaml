@@ -13,6 +13,8 @@ jobs:
     #   uses: actions/checkout@v3
     # - name: setup java repo
     #   run: sudo add-apt-repository ppa:webupd8team/java
+    - name: go to home 
+      run: cd $HOME
     - name: update java repo 
       run: sudo apt-get update
     - name: install java jre
