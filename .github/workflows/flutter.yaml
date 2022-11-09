@@ -6,10 +6,10 @@ jobs:
   Flutter-Build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout the code
-      uses: actions/checkout@v3
-    - name: setup java repo
-      run: sudo add-apt-repository ppa:webupd8team/java
+    # - name: Checkout the code
+    #   uses: actions/checkout@v3
+    # - name: setup java repo
+    #   run: sudo add-apt-repository ppa:webupd8team/java
     - name: update java repo 
       run: sudo apt-get update
     - name: install java jre
