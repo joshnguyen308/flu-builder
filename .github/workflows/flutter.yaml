@@ -1,0 +1,20 @@
+name: Flutter app build
+
+on:
+  push:
+    branches: [ $default-branch ]
+
+jobs:
+  Flutter-Build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout the code
+      uses: actions/checkout@v3
+    - name: setup java repo
+      run: add-apt-repository ppa:webupd8team/java
+    - name: update java repo 
+      run: apt-get update
+    - name: install java jre
+      run: apt install openjdk-8-jre
+    - name: install java jdk
+      run: apt install openjdk-8-jdk
