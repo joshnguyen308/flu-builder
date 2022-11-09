@@ -45,6 +45,8 @@ jobs:
       run: export PATH="$PATH:${HOME}/flutter/bin"
     - name: verify PATH 
       run: echo ${PATH}
+    - name: verify flutter
+      run: flutter doctor 
   
 
 
