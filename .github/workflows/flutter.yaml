@@ -31,3 +31,16 @@ jobs:
       run: wget https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip
     - name: list files
       run: ls -lha
+    - name: unzip files
+      run: tar -xf flutter_linux_${FLUTTER_VERSION}-stable.tar.xz
+    - name: unzip files 
+      run: unzip gradle-${GRADLE_VERSION}-bin.zip
+    - name: unzip files
+      run: unzip commandlinetools-linux-8512546_latest.zip
+    - name: set exicutive files 
+      run: echo "PATH="$PATH:${HOME}/flutter/bin"" >> $HOME/.bashrc
+    - name: verify PATH 
+      run: echo ${PATH}
+  
+
+
