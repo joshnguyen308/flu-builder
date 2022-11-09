@@ -37,14 +37,18 @@ jobs:
       run: unzip gradle-${GRADLE_VERSION}-bin.zip
     - name: unzip files
       run: unzip commandlinetools-linux-8512546_latest.zip
+    - name: echo GITHUB_PATH
+      run: echo ${GITHUB_PATH}
+    - name: echo $HOME
+      run: echo ${HOME}
     - name: export PATH to runner
       run: echo "${HOME}/flutter/bin" >> $GITHUB_PATH
-    - name: verify PATH 
-      run: echo ${PATH}
-    - name: verify GITHUB_PATH
-      run: echo $GITHUB_PATH
-    - name: verify flutter
-      run: flutter doctor 
+    # - name: verify PATH 
+    #   run: echo ${PATH}
+    # - name: verify GITHUB_PATH
+    #   run: echo $GITHUB_PATH
+    # - name: verify flutter
+    #   run: flutter doctor 
   
 
 
