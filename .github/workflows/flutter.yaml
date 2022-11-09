@@ -52,7 +52,7 @@ jobs:
     - name: echo path 
       run: echo ${PATH}
     - name: append path 
-      run: echo "${HOME}/flutter/bin" >> ${PATH}
+      run: PATH=${HOME}/flutter/bin:${PATH}
     - name: echo path 
       run: echo $PATH
     # - name: verify flutter
