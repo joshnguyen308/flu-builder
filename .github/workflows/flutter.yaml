@@ -44,7 +44,7 @@ jobs:
     - name: check PATH
       run: echo "${HOME}/flutter/bin"
     - name: list files
-      run: ls -lha
+      run: ls -lha && pwd 
     - name: verify GITHUB_PATH
       run: echo $GITHUB_PATH
     - name: append path 
