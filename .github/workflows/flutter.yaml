@@ -55,8 +55,8 @@ jobs:
       run: PATH=${HOME}/flutter/bin:${PATH}
     - name: echo path 
       run: echo $PATH
-    # - name: verify flutter
-    #   run: flutter doctor 
+    - name: verify flutter
+      run: flutter doctor
   
 
 
