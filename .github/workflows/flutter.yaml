@@ -49,6 +49,12 @@ jobs:
     #   run: echo ${PATH}
     - name: verify GITHUB_PATH
       run: echo $GITHUB_PATH
+    - name: echo path 
+      run: echo ${PATH}
+    - name: append path 
+      run: echo "${HOME}/flutter/bin" >> ${PATH}
+    - name: echo path 
+      run: echo $PATH
     # - name: verify flutter
     #   run: flutter doctor 
   
