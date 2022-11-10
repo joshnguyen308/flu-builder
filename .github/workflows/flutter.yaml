@@ -32,9 +32,9 @@ jobs:
     - name: location 
       run: ls -lha && pwd
     - name: change home dir
-      run: GITHUB_RUNNER_HOME=$(pwd)
+      run: REPO_HOME=$(pwd)
     - name: check one more time
-      run: echo $GITHUB_RUNNER_HOME
+      run: echo $REPO_HOME
     # - name: unzip files 
     #   run: unzip gradle-${GRADLE_VERSION}-bin.zip
     # - name: unzip files
