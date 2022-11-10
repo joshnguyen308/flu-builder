@@ -9,6 +9,8 @@ jobs:
   Flutter-Build:
     runs-on: ubuntu-latest
     steps:
+    - name: echo github path 
+      run: ${GITHUB_PATH}
     # - name: Checkout the code
     #   uses: actions/checkout@v3
     # - name: setup java repo
@@ -44,15 +46,15 @@ jobs:
     # - name: unzip files
     #   run: unzip commandlinetools-linux-8512546_latest.zip
     - name: export PATH to runner
-      run: echo "${GITHUB_RUNNER_HOME}/flutter/bin" >> $GITHUB_PATH
+      run: echo "${GITHUB_PATH}/flutter/bin" >> $GITHUB_PATH
     - name: check PATH
-      run: echo "${GITHUB_RUNNER_HOME}/flutter/bin"
+      run: echo "${GITHUB_PATH}/flutter/bin"
     - name: list files
       run: ls -lha && pwd 
     - name: verify GITHUB_PATH
-      run: echo $GITHUB_PATH
+      run: echo $GITHUB_PATH        
     - name: append path 
-      run: PATH=${GITHUB_RUNNER_HOME}/flutter/bin:${PATH}
+      run: PATH=${GITHUB_PATH}/flutter/bin:${PATH}
     - name: echo path 
       run: echo $PATH
     - name: list 
