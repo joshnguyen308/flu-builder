@@ -80,17 +80,11 @@ jobs:
       run: git clone git@github.com:ottoint/oi_intranet_app.git
     - name: install depends and build 
       run: cd oi_intranet_app && flutter pub get && flutter build apk
-    - name: check files
-      run: |
-            echo "-------------------------------------------"
-            ls -lha $REPO_HOME/oi_intranet_app/build/app/outputs/flutter-apk/app-release.apk
-            echo "-------------------------------------------"
-            ls -lha $REPO_HOME 
-            echo "-------------------------------------------"
-            ls -lha build/app/outputs/flutter-apk/
+    - name: cp to home repo
+      run: cp $REPO_HOME/oi_intranet_app/build/app/outputs/flutter-apk/app-release.apk $REPO_HOME && ls -lha $REPO_HOME
     - name: save as artifacts 
       uses: actions/upload-artifact@v3
       with:
         name: intranet-application
-        path: $REPO_HOME/oi_intranet_app/build/app/outputs/flutter-apk/app-release.apk
+        path: ${REPO_HOME}/oi_intranet_app/build/app/outputs/flutter-apk/app-release.apk
 
