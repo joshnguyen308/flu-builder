@@ -11,7 +11,7 @@ jobs:
     steps:
     - name: echo github path 
       run: echo ${GITHUB_PATH}
-    - name: update java repo 
+    - name: update repo 
       run: sudo apt-get update
     - name: install java jre
       run: sudo apt install openjdk-8-jre -y
@@ -54,8 +54,8 @@ jobs:
             echo "$ANDROID_SDK" >> $GITHUB_PATH
     - name: verify flutter
       run: flutter doctor
-    - name: list sdk
-      run: sdkmanager --list
+    - name: sdk licenses agreement
+      run:  yes | sdkmanager --sdk_root=${ANDROID_HOME} --licenses
   
 
 
