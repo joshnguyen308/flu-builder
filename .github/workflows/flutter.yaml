@@ -76,7 +76,7 @@ jobs:
           name: intranet apk 
           path: output/test/code-coverage.html
     - name: install ssh key
-      run: apt install -y openssh-client
+      run: sudo apt install -y openssh-client
     - name: setup private key
       run: echo ${{ secrets.SSH_KEY }} > ~/.ssh/id_rsa
     - name: knows hosts
