@@ -13,11 +13,11 @@ jobs:
     - name: update ubuntu repo 
       run: sudo apt-get update
     - name: install java jre
-      run: sudo apt install openjdk-8-jre -y
+      run: sudo apt -y install openjdk-8-jre
     - name: install java jdk
-      run: sudo apt install openjdk-8-jdk -y
+      run: sudo apt -y install openjdk-8-jdk
     - name: install necessary packages
-      run: sudo apt install apt-transport-https ca-certificates wget dirmngr gnupg software-properties-common unzip git wget -y
+      run: sudo apt -y install apt-transport-https ca-certificates wget dirmngr gnupg software-properties-common unzip git wget
     - name: get flutter 
       run: wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz
     - name: get gradle 
@@ -49,14 +49,15 @@ jobs:
       run: |
             echo "ANDROID_SDK=${REPO_HOME}/Android" >> $GITHUB_ENV
             echo "$ANDROID_SDK" >> $GITHUB_PATH
-    - name: verify flutter
-      run: flutter doctor
-    - name: sdk licenses agreement
-      run:  yes | sdkmanager --sdk_root=${ANDROID_HOME} --licenses >/dev/null
+
     - name: set pipefail
       run: set +o pipefail
-    - name: install sdk build tools
-      run: sdkmanager --install "platforms;android-31" "build-tools;30.0.3"
+
+    - name: sdkmanager setup 
+      run: |
+            yes | sdkmanager --sdk_root=${ANDROID_HOME} --licenses >/dev/null
+            sdkmanager --install "platforms;android-31" "build-tools;30.0.3"
+
     - name: check sdk 
       run: sdkmanager --list_installed
     - name: setup gradle 
@@ -69,6 +70,19 @@ jobs:
       run: |
             echo $GRADLE_HOME
             echo $ANDROID_SDK
-  
-
+    - name: save to artifact 
+      uses: actions/upload-artifact@v3
+      with:
+          name: intranet apk 
+          path: output/test/code-coverage.html
+    - name: install ssh key
+      run: apt install -y openssh-client
+    - name: setup private key
+      run: echo ${{secret.SSH_KEY}} > ~/.ssh/id_rsa
+    - name: knows hosts
+      run: if [ ! -n "$(grep "^github.com " ~/.ssh/known_hosts)" ]; then ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null; fi
+    - name: clone application
+      run: git clone git@github.com:ottoint/oi_intranet_app.git
+    - name: install depends and build 
+      run: cd oi_intranet_app && flutter pub get && flutter build apk
 
