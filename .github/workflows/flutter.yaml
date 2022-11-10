@@ -55,7 +55,12 @@ jobs:
     - name: verify flutter
       run: flutter doctor
     - name: sdk licenses agreement
-      run:  yes | sdkmanager --sdk_root=${ANDROID_HOME} --licenses
+      run:  yes | sdkmanager --sdk_root=${ANDROID_HOME} --licenses >/dev/null
+    - name: install sdk build tools
+      run: sdkmanager --install "platforms;android-31" "build-tools;30.0.3" >/dev/null
+    - name: check sdk 
+      run: sdkmanager --list_installed
+    
   
 
 
