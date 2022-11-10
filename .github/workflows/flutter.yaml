@@ -10,6 +10,10 @@ jobs:
   Flutter-APK-Build:
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: list Checkout
+      run: ls -lha && pwd 
     - name: update ubuntu repo 
       run: sudo apt-get update
     - name: install java jre
