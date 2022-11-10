@@ -32,7 +32,7 @@ jobs:
     - name: location 
       run: ls -lha && pwd
     - name: change home dir
-      run: REPO_HOME=$(pwd)
+      run: REPO_HOME=$(pwd) echo "REPO_HOME=$(pwd)" >> $GITHUB_ENV
     - name: check one more time
       run: echo $REPO_HOME
     # - name: unzip files 
