@@ -70,15 +70,15 @@ jobs:
       run: |
             echo $GRADLE_HOME
             echo $ANDROID_SDK
-    - name: save to artifact 
-      uses: actions/upload-artifact@v3
-      with:
-          name: intranet apk 
-          path: output/test/code-coverage.html
+    # - name: save to artifact 
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #       name: intranet apk 
+    #       path: output/test/code-coverage.html
     - name: install ssh key
       run: sudo apt install -y openssh-client
     - name: setup private key
-      run: mkdir -p $HOME/.ssh && mkdir -p ~/.ssh/known_hosts && echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa && chmod 400 ~/.ssh/id_rsa
+      run: mkdir -p $HOME/.ssh && touch -p ~/.ssh/known_hosts && echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa && chmod 400 ~/.ssh/id_rsa
     - name: knows hosts
       run: if [ ! -n "$(grep "^github.com " ~/.ssh/known_hosts)" ]; then ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null; fi
     - name: clone application
