@@ -59,7 +59,8 @@ jobs:
       run: sdkmanager --install "platforms;android-31" "build-tools;30.0.3"
     - name: check sdk 
       run: sdkmanager --list_installed
-    - name: mkdir gradle && mv gradle-7.5.1 gradle && sudo mv gradle /opt
+    - name: setup gradle 
+      run: mkdir gradle && mv gradle-7.5.1 gradle && sudo mv gradle /opt
     - name: set gradle env and path 
       run: |
             echo "GRADLE_HOME=/opt/gradle/gradle-7.5.1/" >> $GITHUB_ENV
