@@ -4,14 +4,13 @@ on: [push]
 env:
   FLUTTER_VERSION: "2.10.0"
   GRADLE_VERSION: "7.5.1"
+  ANDROID_SDK_VERSION: "8512546"
 
 jobs:
-  Flutter-Build:
+  Flutter-APK-Build:
     runs-on: ubuntu-latest
     steps:
-    - name: echo github path 
-      run: echo ${GITHUB_PATH}
-    - name: update repo 
+    - name: update ubuntu repo 
       run: sudo apt-get update
     - name: install java jre
       run: sudo apt install openjdk-8-jre -y
@@ -24,7 +23,7 @@ jobs:
     - name: get gradle 
       run: wget https://downloads.gradle-dn.com/distributions/gradle-${GRADLE_VERSION}-bin.zip
     - name: get commandlinetools
-      run: wget https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip
+      run: wget https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip
     - name: unzip files
       run: tar -xf flutter_linux_${FLUTTER_VERSION}-stable.tar.xz
     - name: add repo home variable
@@ -35,8 +34,6 @@ jobs:
       run: unzip commandlinetools-linux-8512546_latest.zip
     - name: export repo home to runner
       run: echo "${REPO_HOME}/flutter/bin" >> $GITHUB_PATH
-    - name: ls -lha
-      run: ls -lha
     - name: make android dir
       run: mkdir -p Android/cmdline-tools && mv cmdline-tools tools && mv tools Android/cmdline-tools
     - name: verify cmdline-tools
@@ -48,7 +45,7 @@ jobs:
             echo "$ANDROID/cmdline-tools/tools" >> $GITHUB_PATH
             echo "$ANDROID/cmdline-tools/tools/bin" >> $GITHUB_PATH
             echo "$ANDROID/platform-tools" >> $GITHUB_PATH
-    - name: set android sdk
+    - name: set android sdk env and path 
       run: |
             echo "ANDROID_SDK=${REPO_HOME}/Android" >> $GITHUB_ENV
             echo "$ANDROID_SDK" >> $GITHUB_PATH
@@ -56,11 +53,21 @@ jobs:
       run: flutter doctor
     - name: sdk licenses agreement
       run:  yes | sdkmanager --sdk_root=${ANDROID_HOME} --licenses >/dev/null
+    - name: set pipefail
+      run: set +o pipefail
     - name: install sdk build tools
-      run: sdkmanager --install "platforms;android-31" "build-tools;30.0.3" >/dev/null
+      run: sdkmanager --install "platforms;android-31" "build-tools;30.0.3"
     - name: check sdk 
       run: sdkmanager --list_installed
-    
+    - name: mkdir gradle && mv gradle-7.5.1 gradle && sudo mv gradle /opt
+    - name: set gradle env and path 
+      run: |
+            echo "GRADLE_HOME=/opt/gradle/gradle-7.5.1/" >> $GITHUB_ENV
+            echo "$GRADLE_HOME" >> $GITHUB_PATH
+    - name: echo env
+      run: |
+            echo $GRADLE_HOME
+            echo $ANDROID_SDK
   
 
 
