@@ -70,11 +70,6 @@ jobs:
       run: |
             echo $GRADLE_HOME
             echo $ANDROID_SDK
-    # - name: save to artifact 
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #       name: intranet apk 
-    #       path: output/test/code-coverage.html
     - name: install ssh key
       run: sudo apt install -y openssh-client
     - name: setup private key
@@ -85,9 +80,9 @@ jobs:
       run: git clone git@github.com:ottoint/oi_intranet_app.git
     - name: install depends and build 
       run: cd oi_intranet_app && flutter pub get && flutter build apk
-    - name: Archive code coverage results
+    - name: save as artifacts 
       uses: actions/upload-artifact@v3
       with:
         name: intranet-application
-        path: build/app/outputs/flutter-apk/app-release.apk
+        path: $REPO_HOME/oi_intranet_app/build/app/outputs/flutter-apk/app-release.apk
 
