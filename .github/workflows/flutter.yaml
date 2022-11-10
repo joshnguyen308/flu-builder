@@ -11,18 +11,12 @@ jobs:
     steps:
     - name: echo github path 
       run: echo ${GITHUB_PATH}
-    # - name: Checkout the code
-    #   uses: actions/checkout@v3
-    # - name: setup java repo
-    #   run: sudo add-apt-repository ppa:webupd8team/java
     - name: update java repo 
       run: sudo apt-get update
     - name: install java jre
       run: sudo apt install openjdk-8-jre -y
     - name: install java jdk
-      run: sudo apt install openjdk-8-jdk
-    - name: verify java 
-      run: java --version
+      run: sudo apt install openjdk-8-jdk -y
     - name: install necessary packages
       run: sudo apt install apt-transport-https ca-certificates wget dirmngr gnupg software-properties-common unzip git wget -y
     - name: get flutter 
@@ -40,27 +34,27 @@ jobs:
     - name: change home dir
       run: GITHUB_RUNNER_HOME=$(pwd)
     - name: check one more time
-      run: echo ${GITHUB_RUNNER_HOME}
+      run: echo $GITHUB_RUNNER_HOME
     # - name: unzip files 
     #   run: unzip gradle-${GRADLE_VERSION}-bin.zip
     # - name: unzip files
     #   run: unzip commandlinetools-linux-8512546_latest.zip
-    - name: export PATH to runner
-      run: echo "${GITHUB_PATH}/flutter/bin" >> $GITHUB_PATH
-    - name: check PATH
-      run: echo "${GITHUB_PATH}/flutter/bin"
-    - name: list files
-      run: ls -lha && pwd 
-    - name: verify GITHUB_PATH
-      run: echo $GITHUB_PATH        
-    - name: append path 
-      run: PATH=${GITHUB_PATH}/flutter/bin:${PATH}
-    - name: echo path 
-      run: echo $PATH
-    - name: list 
-      run: cd flutter && ls -lha && pwd
-    - name: verify flutter
-      run: flutter doctor
+    # - name: export PATH to runner
+    #   run: echo "${GITHUB_PATH}/flutter/bin" >> $GITHUB_PATH
+    # - name: check PATH
+    #   run: echo "${GITHUB_PATH}/flutter/bin"
+    # - name: list files
+    #   run: ls -lha && pwd 
+    # - name: verify GITHUB_PATH
+    #   run: echo $GITHUB_PATH        
+    # - name: append path 
+    #   run: PATH=${GITHUB_PATH}/flutter/bin:${PATH}
+    # - name: echo path 
+    #   run: echo $PATH
+    # - name: list 
+    #   run: cd flutter && ls -lha && pwd
+    # - name: verify flutter
+    #   run: flutter doctor
   
 
 
