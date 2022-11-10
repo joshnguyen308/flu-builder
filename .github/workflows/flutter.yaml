@@ -86,5 +86,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: intranet-application
-        path: ${REPO_HOME}/oi_intranet_app/build/app/outputs/flutter-apk/app-release.apk
+        path: ${REPO_HOME}/oi_intranet_app/build/app/outputs/flutter-apk/
 
