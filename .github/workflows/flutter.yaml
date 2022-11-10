@@ -32,15 +32,15 @@ jobs:
     - name: location 
       run: ls -lha && pwd
     - name: change home dir
-      run: REPO_HOME=$(pwd) echo "REPO_HOME=$(pwd)" >> $GITHUB_ENV
+      run: echo "REPO_HOME=$(pwd)" >> $GITHUB_ENV
     - name: check one more time
       run: echo $REPO_HOME
     # - name: unzip files 
     #   run: unzip gradle-${GRADLE_VERSION}-bin.zip
     # - name: unzip files
     #   run: unzip commandlinetools-linux-8512546_latest.zip
-    # - name: export PATH to runner
-    #   run: echo "${GITHUB_PATH}/flutter/bin" >> $GITHUB_PATH
+    - name: export PATH to runner
+      run: echo "${REPO_HOME}/flutter/bin" >> $GITHUB_PATH
     # - name: check PATH
     #   run: echo "${GITHUB_PATH}/flutter/bin"
     # - name: list files
@@ -53,8 +53,8 @@ jobs:
     #   run: echo $PATH
     # - name: list 
     #   run: cd flutter && ls -lha && pwd
-    # - name: verify flutter
-    #   run: flutter doctor
+    - name: verify flutter
+      run: flutter doctor
   
 
 
