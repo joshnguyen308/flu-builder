@@ -78,7 +78,7 @@ jobs:
     - name: install ssh key
       run: sudo apt install -y openssh-client
     - name: setup private key
-      run: mkdir -p $HOME/.ssh && echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+      run: mkdir -p $HOME/.ssh && mkdir -p ~/.ssh/known_hosts && echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa && chmod 400 ~/.ssh/id_rsa
     - name: knows hosts
       run: if [ ! -n "$(grep "^github.com " ~/.ssh/known_hosts)" ]; then ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null; fi
     - name: clone application
