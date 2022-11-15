@@ -30,6 +30,10 @@ jobs:
       run: unzip ./development/flutter_macos_${FLUTTER_VERSION}-stable.zip
     - name: list files 
       run: ls -lha && ls -lha ./development
+    - name: export repo home to runner
+      run: echo "${REPO_HOME}/flutter/bin" >> $GITHUB_PATH
+    - name: check flutter command 
+      run: flutter doctor 
 
 
 
