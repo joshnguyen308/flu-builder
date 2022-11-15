@@ -20,10 +20,12 @@ jobs:
       run: cd development && wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz
     - name: list files 
       run: ls -lha
-    - name: unzip flutter 
-      run: unzip flutter_linux_${FLUTTER_VERSION}-stable.tar.xz
-    - name: list files 
-      run: ls -lha
+    - name: pwd 
+      run: pwd
+    # - name: unzip flutter 
+    #   run: unzip flutter_linux_${FLUTTER_VERSION}-stable.tar.xz
+    # - name: list files 
+    #   run: ls -lha
 
 
 
