@@ -13,9 +13,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
     - name: list files
-      uses: ls -lha
+      run: ls -lha
     - name: make working directory
-      uses: mkdir development
+      run: mkdir development
     - name: get flutter 
       run: cd development && wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz
     - name: list files 
