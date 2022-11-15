@@ -25,7 +25,7 @@ jobs:
     - name: add repo home variable
       run: echo "REPO_HOME=$(pwd)" >> $GITHUB_ENV
     - name: unzip flutter 
-      run: unzip ./development/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz
+      run: tar -xf ./development/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz
     - name: list files 
       run: ls -lha && ls -lha ./development
 
