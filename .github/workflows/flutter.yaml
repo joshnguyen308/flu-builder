@@ -34,7 +34,9 @@ jobs:
       run: echo "${REPO_HOME}/flutter/bin" >> $GITHUB_PATH
     - name: check flutter command 
       run: flutter doctor 
-
+    - name: install depends 
+      run: flutter pub get && flutter build ios 
+    
 
 
   # Flutter-APK-Build:
