@@ -10,6 +10,8 @@ jobs:
   Flutter-IOS-Build:
     runs-on: macos-latest
     steps:
+    - name: check macos version 
+      run: sw_vers
     - name: Checkout
       uses: actions/checkout@v3
     - name: list files
