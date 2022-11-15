@@ -19,7 +19,7 @@ jobs:
     - name: make working directory
       run: mkdir development
     - name: get flutter 
-      run: cd development && wget https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos_${FLUTTER_VERSION-stable.zip
+      run: cd development && wget https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos_${FLUTTER_VERSION}-stable.zip
     - name: list files 
       run: ls -lha
     - name: pwd 
